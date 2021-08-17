@@ -68,12 +68,6 @@ jobs:
         chmod +x $DIY_P1_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P1_SH
-
-    - name: 下载第三方软件包
-      run: |
-        cd openwrt 
-        git clone https://github.com/kenzok8/openwrt-packages.git package/kenzo
-        git clone https://github.com/kenzok8/small package/small
         
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
