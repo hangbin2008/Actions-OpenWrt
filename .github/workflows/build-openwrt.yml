@@ -89,7 +89,7 @@ jobs:
         git clone https://github.com/kenzok8/small  package/small
         git clone https://github.com/kenzok8/openwrt-packages  package/passwall
         git clone https://github.com/destan19/OpenAppFilter package/OpenAppFilter
-
+        git clone https://github.com/sirpdboy/sirpdboy-package package/sirpdboy-package
     - name: SSH connection to Actions
       uses: P3TERX/ssh2actions@v1.0.0
       if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
