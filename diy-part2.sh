@@ -20,7 +20,7 @@ sed -i 's/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.//g' package/lean/default-settings/f
 sed -i 's/OpenWrt/hanbin-wrt/g' package/base-files/files/bin/config_generate
 
 #4. 修改banne文件（banne文件在根目录）（不要修改此行代码,怕弄的diy-lede.sh文件全失效,不需要的话前面加#，或者全行代码删除了）
-rm -rf package/base-files/files/etc/banne && \cp -f banner package/base-files/files/etc/ && cd openwrt
+#rm -rf package/base-files/files/etc/banne && \cp -f banner package/base-files/files/etc/ && cd openwrt
 
 #5. Replace with JerryKuKu’s Argon
 #rm openwrt/package/lean/luci-theme-argon -rf
