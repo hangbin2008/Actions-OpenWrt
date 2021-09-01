@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build x86_64_OpenWrt 
+name: Build x86_64_OpenWrt 5.4 
 
 on:
   repository_dispatch:
@@ -20,7 +20,7 @@ on:
  #       default: 'false'
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
+  REPO_URL: https://github.com/cc0817/openwr
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: x86_64.config
@@ -66,8 +66,10 @@ jobs:
       run: |
         chmod +x $DIY_P1_SH
         cd openwrt
-        git clone https://github.com/Boos4721/OpenWrt-Packages.git package/Boos4721
         $GITHUB_WORKSPACE/$DIY_P1_SH
+       # cd openwrt
+       # git clone https://github.com/Boos4721/OpenWrt-Packages.git package/Boos4721
+        
         
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
