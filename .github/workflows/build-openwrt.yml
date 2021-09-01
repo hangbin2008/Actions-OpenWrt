@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build x86_64_OpenWrt 5.10
+name: Build x86_64_OpenWrt 5.4
 
 on:
   repository_dispatch:
@@ -66,6 +66,7 @@ jobs:
       run: |
         chmod +x $DIY_P1_SH
         cd openwrt
+        sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' target/linux/x86/Makefile
         $GITHUB_WORKSPACE/$DIY_P1_SH
        # cd openwrt
        # git clone https://github.com/Boos4721/OpenWrt-Packages.git package/Boos4721
