@@ -14,7 +14,7 @@
 sed -i 's/10.10.10.1/192.168.2.210/g' package/base-files/files/bin/config_generate
 
 #2. 设置密码为空（安装固件时无需密码登陆，然后自己修改想要的密码）
-sed -i 's/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.//g' package/lean/default-settings/files/zzz-default-settings
+#sed -i 's/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.//g' package/lean/default-settings/files/zzz-default-settings
 
 #3. 修改主机名字，把OpenWrt-123修改你喜欢的就行（不能纯数字或者使用中文）
 #sed -i 's/OpenWrt/hanbin-wrt/g' package/base-files/files/bin/config_generate
