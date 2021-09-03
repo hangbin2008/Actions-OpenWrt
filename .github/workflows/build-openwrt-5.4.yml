@@ -23,7 +23,7 @@ env:
   REPO_URL: https://github.com/cc0817/openwrt.git
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: dockerman.config
+  CONFIG_FILE: deocker.config
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
   UPLOAD_BIN_DIR: true
@@ -62,12 +62,12 @@ jobs:
         #git clone -b main --single-branch https://github.com/Lienol/openwrt openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
-    - name: Load custom feeds
-      run: |
-        chmod +x $DIY_P1_SH
-        cd openwrt
-        sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' target/linux/x86/Makefile
-        $GITHUB_WORKSPACE/$DIY_P1_SH
+    #- name: Load custom feeds
+    #  run: |
+    #    chmod +x $DIY_P1_SH
+    #    cd openwrt
+    #    sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' target/linux/x86/Makefile
+    #    $GITHUB_WORKSPACE/$DIY_P1_SH
        # cd openwrt
        # git clone https://github.com/Boos4721/OpenWrt-Packages.git package/Boos4721
         
