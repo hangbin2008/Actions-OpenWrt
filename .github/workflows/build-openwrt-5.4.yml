@@ -20,7 +20,7 @@ on:
  #       default: 'false'
 
 env:
-  REPO_URL: https://github.com/cc0817/openwrt.git
+  REPO_URL: https://github.com/coolsnowwolf/lede.git
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: deocker.config
@@ -59,16 +59,15 @@ jobs:
       run: |
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
-        #git clone -b main --single-branch https://github.com/Lienol/openwrt openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+        #git clone -b main --single-branch https://github.com/Lienol/openwrt openwrt
 
-    #- name: Load custom feeds
-    #  run: |
-    #    chmod +x $DIY_P1_SH
-    #    cd openwrt
-    #    sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' target/linux/x86/Makefile
-    #    $GITHUB_WORKSPACE/$DIY_P1_SH
-       # cd openwrt
+    - name: Load custom feeds
+      run: |
+        chmod +x $DIY_P1_SH
+        cd openwrt
+        $GITHUB_WORKSPACE/$DIY_P1_SH
+       # sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' target/linux/x86/Makefile
        # git clone https://github.com/Boos4721/OpenWrt-Packages.git package/Boos4721
         
         
