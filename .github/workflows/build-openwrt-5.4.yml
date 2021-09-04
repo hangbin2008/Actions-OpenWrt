@@ -85,9 +85,11 @@ jobs:
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
      
-    #- name: 自定义安装源
-    #  working-directory: ./openwrt
-    #  run: |
+    - name: 自定义安装源
+      working-directory: ./openwrt
+      run: |
+        git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
+        git clone https://github.com/sirpdboy/sirpdboy-package package/opentopd       
     #    git clone https://github.com/kenzok8/small  package/small
     #    git clone https://github.com/kenzok8/openwrt-packages  package/passwall
     #    git clone https://github.com/sirpdboy/sirpdboy-package package/sirpdboy-package
