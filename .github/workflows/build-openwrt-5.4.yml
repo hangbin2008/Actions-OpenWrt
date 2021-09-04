@@ -20,7 +20,7 @@ on:
  #       default: 'false'
 
 env:
-  REPO_URL: https://github.com/Boos4721/openwrt.git
+  REPO_URL: https://github.com/hangyubin/lede.git
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: docker_x86.config
@@ -67,8 +67,8 @@ jobs:
         chmod +x $DIY_P1_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P1_SH
-        sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' target/linux/x86/Makefile
-       # git clone https://github.com/Boos4721/OpenWrt-Packages.git package/Boos4721
+       #sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' target/linux/x86/Makefile
+       #git clone https://github.com/Boos4721/OpenWrt-Packages.git package/Boos4721
         
         
     - name: Update feeds
