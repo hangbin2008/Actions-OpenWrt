@@ -20,10 +20,10 @@ on:
  #       default: 'false'
 
 env:
-  REPO_URL: https://github.com/cc0817/openwrt.git
+  REPO_URL: https://github.com/Boos4721/openwrt.git
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: x86_64.config
+  CONFIG_FILE: docker_x86.config
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
   UPLOAD_BIN_DIR: true
@@ -62,13 +62,13 @@ jobs:
         #git clone -b main --single-branch https://github.com/Lienol/openwrt openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
-    - name: Load custom feeds
-      run: |
-        chmod +x $DIY_P1_SH
-        cd openwrt
-        $GITHUB_WORKSPACE/$DIY_P1_SH
-       # cd openwrt
-       # git clone https://github.com/Boos4721/OpenWrt-Packages.git package/Boos4721
+    #- name: Load custom feeds
+    #  run: |
+    #    chmod +x $DIY_P1_SH
+    #    cd openwrt
+    #    $GITHUB_WORKSPACE/$DIY_P1_SH
+    #    cd openwrt
+    #    git clone https://github.com/Boos4721/OpenWrt-Packages.git package/Boos4721
         
         
     - name: Update feeds
@@ -81,9 +81,9 @@ jobs:
       run: |
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
-        chmod +x $DIY_P2_SH
-        cd openwrt
-        $GITHUB_WORKSPACE/$DIY_P2_SH
+    #    chmod +x $DIY_P2_SH
+    #    cd openwrt
+    #    $GITHUB_WORKSPACE/$DIY_P2_SH
      
     #- name: 自定义安装源
     #  working-directory: ./openwrt
@@ -92,12 +92,12 @@ jobs:
     #    git clone https://github.com/kenzok8/openwrt-packages  package/passwall
     #    git clone https://github.com/sirpdboy/sirpdboy-package package/sirpdboy-package
     #    git clone https://github.com/destan19/OpenAppFilter package/OpenAppFilter
-   # - name: SSH connection to Actions
-   #   uses: P3TERX/ssh2actions@v1.0.0
-   #   if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
-   #   env:
-   #     TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-   #     TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+    # - name: SSH connection to Actions
+    #   uses: P3TERX/ssh2actions@v1.0.0
+    #   if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
+    #   env:
+    #     TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+    #     TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
 
     - name: Download package
       id: package
