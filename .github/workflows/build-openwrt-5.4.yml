@@ -89,18 +89,18 @@ jobs:
     - name: 自定义安装源
       working-directory: ./openwrt
       run: |
-        git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
-        git clone https://github.com/sirpdboy/sirpdboy-package package/opentopd       
+         git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
+         git clone https://github.com/sirpdboy/sirpdboy-package package/opentopd       
     #    git clone https://github.com/kenzok8/small  package/small
     #    git clone https://github.com/kenzok8/openwrt-packages  package/passwall
     #    git clone https://github.com/sirpdboy/sirpdboy-package package/sirpdboy-package
     #    git clone https://github.com/destan19/OpenAppFilter package/OpenAppFilter
-   # - name: SSH connection to Actions
-   #   uses: P3TERX/ssh2actions@v1.0.0
-   #   if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
-   #   env:
-   #     TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-   #     TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+    # - name: SSH connection to Actions
+    #   uses: P3TERX/ssh2actions@v1.0.0
+    #   if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
+    #   env:
+    #     TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+    #     TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
 
     - name: Download package
       id: package
