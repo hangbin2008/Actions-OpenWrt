@@ -62,10 +62,11 @@ jobs:
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
         #git clone -b main --single-branch https://github.com/Lienol/openwrt openwrt
 
-   #- name: Load custom feeds
-   #  run: |
-   #   chmod +x $DIY_P1_SH
-   #   cd openwrt
+    - name: Load custom feeds
+      run: |
+       rm -rf openwrt/feeds.conf.default && \cp -f feeds.conf.default  openwrt
+   #    chmod +x $DIY_P1_SH
+   #    cd openwrt
    #   echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
    #   $GITHUB_WORKSPACE/$DIY_P1_SH
    #   sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' target/linux/x86/Makefile
