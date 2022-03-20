@@ -62,14 +62,16 @@ jobs:
         #git clone -b main --single-branch https://github.com/Lienol/openwrt openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
-    - name: Load custom feeds
+    - name: 自定义软件源
       run: |
-        chmod +x $DIY_P1_SH
-        cd openwrt
-        $GITHUB_WORKSPACE/$DIY_P1_SH
         cd openwrt
         git clone https://github.com/kenzok8/jell.git package/jell
-        # git clone https://github.com/Boos4721/OpenWrt-Packages.git package/OpenWrt-Packages
+       # chmod +x $DIY_P1_SH
+       # cd openwrt
+       # $GITHUB_WORKSPACE/$DIY_P1_SH
+       # cd openwrt
+       # git clone https://github.com/kenzok8/jell.git package/jell
+       # git clone https://github.com/Boos4721/OpenWrt-Packages.git package/OpenWrt-Packages
         
         
     - name: Update feeds
