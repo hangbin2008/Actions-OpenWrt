@@ -65,7 +65,8 @@ jobs:
     - name: 自定义软件源
       run: |
         cd openwrt
-        git clone https://github.com/kenzok8/jell.git package/jell
+        sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
+        sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
        # chmod +x $DIY_P1_SH
        # cd openwrt
        # $GITHUB_WORKSPACE/$DIY_P1_SH
