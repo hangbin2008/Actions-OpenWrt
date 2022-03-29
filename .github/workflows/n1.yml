@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build docker_OpenWrt_N1 5.4
+name: Build Phicomm N1
 
 on:
   repository_dispatch:
@@ -23,7 +23,7 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede.git
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: n1.config
+  CONFIG_FILE: n2n.config
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
   UPLOAD_BIN_DIR: true
@@ -60,16 +60,18 @@ jobs:
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+        cd openwrt
+        sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
+        sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
         #git clone -b main --single-branch https://github.com/Lienol/openwrt openwrt
 
-    - name: Load custom feeds
-      run: |
-        chmod +x $DIY_P1_SH
-        cd openwrt
-        echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
-        $GITHUB_WORKSPACE/$DIY_P1_SH
-       #sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' target/linux/x86/Makefile
-       #git clone https://github.com/Boos4721/OpenWrt-Packages.git package/Boos4721
+   # - name: Load custom feeds
+   #   run: |
+   #     chmod +x $DIY_P2_SH
+   #     cd openwrt
+   #     $GITHUB_WORKSPACE/$DIY_P2_SH
+       # sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' target/linux/x86/Makefile
+       # git clone https://github.com/Boos4721/OpenWrt-Packages.git package/Boos4721
         
         
     - name: Update feeds
@@ -86,11 +88,11 @@ jobs:
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
      
-    - name: 自定义安装源
-      working-directory: ./openwrt
-      run: |
-         git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
-         git clone https://github.com/sirpdboy/sirpdboy-package package/opentopd       
+    # - name: 自定义安装源
+    #  working-directory: ./openwrt
+    #  run: |
+    #     git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
+    #     git clone https://github.com/sirpdboy/sirpdboy-package package/opentopd       
     #    git clone https://github.com/kenzok8/small  package/small
     #    git clone https://github.com/kenzok8/openwrt-packages  package/passwall
     #    git clone https://github.com/sirpdboy/sirpdboy-package package/sirpdboy-package
