@@ -10,26 +10,17 @@
 # Description: OpenWrt DIY script part 1 (Before Update feeds)
 #
 
-# Uncomment a feed source
-# sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
+#1. 修改openwrt登陆地址,把下面的192.168.5.1修改成你想要的就可以了
+sed -i 's/192.168.1.1/192.168.2.210/g' openwrt/package/base-files/files/bin/config_generate
 
-# Add a feed source
-# echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
+#2. 设置密码为空（安装固件时无需密码登陆，然后自己修改想要的密码）
+sed -i 's/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.//g' openwrt/package/lean/default-settings/files/zzz-default-settings
 
-# Modify default IP
-# sed -i 's/192.168.1.1/192.168.31.1/g' package/base-files/files/bin/config_generate
+#3. 修改主机名字，把OpenWrt-123修改你喜欢的就行（不能纯数字或者使用中文）
+# sed -i 's/OpenWrt/OpenWrt-hanbin/g' openwrt/package/base-files/files/bin/config_generate
 
-# firewall custom
- echo "iptables -t nat -I POSTROUTING -o eth0 -j MASQUERADE" >> package/network/config/firewall/files/firewall.user
-#修改默认ip
-sed -i 's/192.168.1.1/192.168.3.1/g' package/base-files/files/bin/config_generate
-#删除原主题
-rm -rf package/lean/luci-theme-argon
-#添加新的主题
-# git clone https://github.com/kenzok8/luci-theme-ifit.git package/lean/luci-theme-ifit
-#添加常用软件包
-# git clone https://github.com/kenzok8/openwrt-packages.git package/openwrt-packages
-#删除默认密码
-# sed -i "/CYXluq4wUazHjmCDBCqXF/d" package/lean/default-settings/files/zzz-default-settings
-#取消bootstrap为默认主题
-sed -i '/set luci.main.mediaurlbase=/luci-static/bootstrap/d' feeds/luci/themes/luci-theme-bootstrap/root/etc/uci-defaults/30_luci-theme-bootstrap
+#4. 修改banne文件（banne文件在根目录）（不要修改此行代码,怕弄的diy-lede.sh文件全失效,不需要的话前面加#，或者全行代码删除了）
+# rm -rf openwrt/package/base-files/files/etc/banne && \cp -f banner openwrt/package/base-files/files/etc/ && cd openwrt
+
+#5. Add a feed source
+rm -rf package/lean/luci-theme-argon && git clone -b 18.06 https://github.com/hangyubin/luci-theme-argon package/lean/luci-theme-argon
