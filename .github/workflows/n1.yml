@@ -93,6 +93,7 @@ jobs:
       working-directory: ./openwrt
       run: |
          git clone https://github.com/sirpdboy/sirpdboy-package package/sirpdboy-package
+         svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash  package/openclash
     #    git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
     #    git clone https://github.com/sirpdboy/sirpdboy-package package/opentopd       
     #    git clone https://github.com/kenzok8/small  package/small 
