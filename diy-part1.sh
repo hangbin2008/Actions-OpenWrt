@@ -23,4 +23,4 @@ sed -i 's/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.//g' openwrt/package/lean/default-se
 # rm -rf openwrt/package/base-files/files/etc/banne && \cp -f banner openwrt/package/base-files/files/etc/ && cd openwrt
 
 #5. Add a feed source
-rm -rf package/lean/luci-theme-argon && git clone -b 18.06 https://github.com/hangyubin/luci-theme-argon package/lean/luci-theme-argon
+rm -rf ./package/lean/luci-theme-argon && git clone -b 18.06 https://github.com/hangyubin/luci-theme-argon package/lean/luci-theme-argon
