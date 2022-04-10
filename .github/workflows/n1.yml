@@ -72,8 +72,8 @@ jobs:
    #     chmod +x $DIY_P1_SH
    #     cd openwrt
    #     $GITHUB_WORKSPACE/$DIY_P1_SH
-       # sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' target/linux/x86/Makefile
-       # git clone https://github.com/Boos4721/OpenWrt-Packages.git package/Boos4721
+   #     sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' target/linux/x86/Makefile
+   #     git clone https://github.com/Boos4721/OpenWrt-Packages.git package/Boos4721
         
         
     - name: Update feeds
@@ -90,11 +90,11 @@ jobs:
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
      
-    #- name: 自定义安装源
-    #  working-directory: ./openwrt
-    #  run: |
-    #     git clone https://github.com/sirpdboy/sirpdboy-package package/sirpdboy-package
-    #     svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash  package/openclash
+    - name: 自定义安装源
+      working-directory: ./openwrt
+      run: |
+         git clone https://github.com/sirpdboy/sirpdboy-package package/sirpdboy-package
+         svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash  package/openclash
     #    git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
     #    git clone https://github.com/sirpdboy/sirpdboy-package package/opentopd       
     #    git clone https://github.com/kenzok8/small  package/small 
