@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build x86 openwrt for sirpdboy-package
+name: Build x86_64 openwrt for sirpdboy-package
 
 on:
   repository_dispatch:
