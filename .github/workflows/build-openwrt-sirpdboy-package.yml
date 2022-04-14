@@ -60,18 +60,13 @@ jobs:
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
-        #git clone -b main --single-branch https://github.com/Lienol/openwrt openwrt
 
     - name: Load custom feeds
       run: |
         chmod +x $DIY_P1_SH
         cd openwrt
-        echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
         $GITHUB_WORKSPACE/$DIY_P1_SH
-       #sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' target/linux/x86/Makefile
-       #git clone https://github.com/Boos4721/OpenWrt-Packages.git package/Boos4721
-        
-        
+
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
 
@@ -82,19 +77,16 @@ jobs:
       run: |
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
-   #     chmod +x $DIY_P2_SH
-   #     cd openwrt
-   #     $GITHUB_WORKSPACE/$DIY_P2_SH
      
     - name: 自定义安装源
       working-directory: ./openwrt
       run: |
-         git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
-         git clone https://github.com/sirpdboy/sirpdboy-package package/sirpdboy-package       
-    #    git clone https://github.com/kenzok8/small  package/small
-    #    git clone https://github.com/kenzok8/openwrt-packages  package/passwall
-    #    git clone https://github.com/sirpdboy/sirpdboy-package package/sirpdboy-package
-    #    git clone https://github.com/destan19/OpenAppFilter package/OpenAppFilter
+         git clone https://github.com/fw876/helloworld.git package/helloworld
+         git clone https://github.com/sirpdboy/sirpdboy-package package/sirpdboy-package
+         git clone https://github.com/jerrykuku/lua-maxminddb.git  package/lua-maxminddb
+         git clone https://github.com/jerrykuku/luci-app-vssr.git  package/luci-app-vssr
+    #    git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
+    
     # - name: SSH connection to Actions
     #   uses: P3TERX/ssh2actions@v1.0.0
     #   if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
