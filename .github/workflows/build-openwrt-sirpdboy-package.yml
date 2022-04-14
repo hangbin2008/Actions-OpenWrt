@@ -81,6 +81,7 @@ jobs:
     - name: 自定义安装源
       working-directory: ./openwrt
       run: |
+         svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash  package/openclash
          git clone https://github.com/fw876/helloworld.git package/helloworld
          git clone https://github.com/sirpdboy/sirpdboy-package package/sirpdboy-package
          git clone https://github.com/jerrykuku/lua-maxminddb.git  package/lua-maxminddb
