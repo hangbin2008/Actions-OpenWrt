@@ -24,3 +24,9 @@
 
 #5. Add a feed source
   rm -rf ./package/lean/luci-theme-argon && git clone -b 18.06 https://github.com/hangyubin/luci-theme-argon package/lean/luci-theme-argon
+  
+#6 firewall custom
+echo "iptables -t nat -I POSTROUTING -o eth0 -j MASQUERADE" >> package/network/config/firewall/files/firewall.user
+
+#7 Mod zzz-default-settings
+sed -i "/commit luci/i\uci set luci.main.mediaurlbase='/luci-static/argon'" package/lean/default-settings/files/zzz-default-settings
