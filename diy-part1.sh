@@ -14,7 +14,7 @@
   sed -i 's/192.168.1.1/192.168.2.210/g' ./package/base-files/files/bin/config_generate
 
 #2. 设置密码为空（安装固件时无需密码登陆，然后自己修改想要的密码）
-  sed -i 's/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.//g' ./package/lean/default-settings/files/zzz-default-settings
+#  sed -i 's/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.//g' ./package/lean/default-settings/files/zzz-default-settings
 
 #3. 修改主机名字，把OpenWrt-123修改你喜欢的就行（不能纯数字或者使用中文）
 # sed -i 's/OpenWrt/x86-64/g' ./package/base-files/files/bin/config_generate
@@ -23,10 +23,10 @@
 # rm -rf ./package/base-files/files/etc/banne && \cp -f banner ./package/base-files/files/etc/ && cd openwrt
 
 #5. Add a feed source
-  rm -rf ./package/lean/luci-theme-argon && git clone -b 18.06 https://github.com/hangyubin/luci-theme-argon package/lean/luci-theme-argon
+#  rm -rf ./package/lean/luci-theme-argon && git clone -b 18.06 https://github.com/hangyubin/luci-theme-argon package/lean/luci-theme-argon
   
 #6 firewall custom
 echo "iptables -t nat -I POSTROUTING -o eth0 -j MASQUERADE" >> package/network/config/firewall/files/firewall.user
 
 #7 Mod zzz-default-settings
-sed -i "/commit luci/i\uci set luci.main.mediaurlbase='/luci-static/argon'" package/lean/default-settings/files/zzz-default-settings
+# sed -i "/commit luci/i\uci set luci.main.mediaurlbase='/luci-static/argon'" package/lean/default-settings/files/zzz-default-settings
