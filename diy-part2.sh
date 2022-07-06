@@ -37,7 +37,7 @@ sed -i 's/192.168.1.1/192.168.2.2/g' package/base-files/files/bin/config_generat
 echo "iptables -t nat -I POSTROUTING -o eth0 -j MASQUERADE" >> package/network/config/firewall/files/firewall.user
 
 # Mod zzz-default-settings
-sed -i "/commit luci/i\uci set luci.main.mediaurlbase='/luci-static/argon'" package/lean/default-settings/files/zzz-default-settings
+# sed -i "/commit luci/i\uci set luci.main.mediaurlbase='/luci-static/argon'" package/lean/default-settings/files/zzz-default-settings
 
 # Openwrt version
 version=$(grep "DISTRIB_REVISION=" package/lean/default-settings/files/zzz-default-settings  | awk -F "'" '{print $2}')
@@ -47,12 +47,12 @@ sed -i '/exit 0/d' package/lean/default-settings/files/zzz-default-settings
 echo "exit 0" >> package/lean/default-settings/files/zzz-default-settings
 
 # Add additional packages
+ git clone https://github.com/kenzok8/openwrt-packages.git package/kenzok8-package
+ git clone https://github.com/kenzok8/small-package package/small-package 
+# git clone https://github.com/sirpdboy/luci-theme-opentopd.git package/luci-theme-opentopd
+# git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
+# git clone https://github.com/jerrykuku/luci-app-argon-config.git package/luci-app-argon-config
 # git clone https://github.com/hangyubin/jell.git package/jell-package
 # git clone https://github.com/kenzok8/small-package package/small-package
 # git clone https://github.com/kenzok8/small.git package/small
 # git clone https://github.com/Boos4721/OpenWrt-Packages.git package/OpenWrt-Packages
-# git clone https://github.com/kenzok8/openwrt-packages.git package/helloworld
-# git clone https://github.com/kenzok8/small-package package/small-package 
-# git clone https://github.com/sirpdboy/luci-theme-opentopd.git package/luci-theme-opentopd
-# git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
-# git clone https://github.com/jerrykuku/luci-app-argon-config.git package/luci-app-argon-config
