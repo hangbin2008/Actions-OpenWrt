@@ -66,7 +66,10 @@ jobs:
         chmod +x $DIY_P2_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
-
+        
+    - name: 更换内核编译
+      run: cd openwrt && sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/' ./target/linux/ramips/Makefile
+      
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
 
