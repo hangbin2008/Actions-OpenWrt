@@ -23,7 +23,7 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede.git
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: kkp5_10.config
+  CONFIG_FILE: k2p.config
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
   UPLOAD_BIN_DIR: true
@@ -67,8 +67,8 @@ jobs:
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
         
-   # - name: 更换内核编译
-   #   run: cd openwrt && sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/' ./target/linux/ramips/Makefile
+    - name: 更换内核编译
+      run: cd openwrt && sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/' ./target/linux/ramips/Makefile
       
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
