@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build openwrt for Phicomm k2p for kkp.config
+name: Build openwrt for Phicomm k2p
 
 on:
   repository_dispatch:
