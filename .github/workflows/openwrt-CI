@@ -1,69 +1,81 @@
 #
-# This is free software, lisence use MIT.
-# 
-# Copyright (C) 2019 P3TERX <https://p3terx.com>
-# Copyright (C) 2020 KFERMercer <KFER.Mercer@gmail.com>
-# 
-# <https://github.com/KFERMercer/OpenWrt-CI>
+# Copyright (c) 2019-2020 P3TERX <https://p3terx.com>
+#
+# This is free software, licensed under the MIT License.
+# See /LICENSE for more information.
+#
+# https://github.com/P3TERX/Actions-OpenWrt
+# Description: Build OpenWrt using GitHub Actions
 #
 
-name: OpenWrt-CI
+name: Build openwrt for Phicomm k2p
 
 on:
   repository_dispatch:
   workflow_dispatch:
+ #  inputs:
+ #     ssh:
+ #       description: 'SSH connection to Actions'
+ #       required: false
+ #       default: 'false'
+
+env:
+  REPO_URL: https://github.com/coolsnowwolf/lede.git
+  REPO_BRANCH: master
+  FEEDS_CONF: feeds.conf.default
+  CONFIG_FILE: passwall.config
+  DIY_P1_SH: diy-part1.sh
+  DIY_P2_SH: diy-part2.sh
+  UPLOAD_BIN_DIR: true
+  UPLOAD_FIRMWARE: false
+  UPLOAD_COWTRANSFER: false
+  UPLOAD_WETRANSFER: false
+  UPLOAD_RELEASE: false
+  TZ: Asia/Shanghai
 
 jobs:
-
   build:
-
-    name: Build OpenWrt firmware
-
-    runs-on: ubuntu-latest
-
-    if: github.event.repository.owner.id == github.event.sender.id
+    runs-on: ubuntu-20.04
 
     steps:
+    - name: Checkout
+      uses: actions/checkout@main
 
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          ref: master
+    - name: Initialization environment
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
+        sudo -E apt-get -qq update
+        sudo -E apt-get -qq install $(curl -fsSL git.io/depends-ubuntu-2004)
+        sudo -E apt-get -qq autoremove --purge
+        sudo -E apt-get -qq clean
+        sudo timedatectl set-timezone "$TZ"
+        sudo mkdir -p /workdir
+        sudo chown $USER:$GROUPS /workdir
+    - name: Clone source code
+      working-directory: /workdir
+      run: |
+        df -hT $PWD
+        git clone $REPO_URL -b $REPO_BRANCH openwrt
+        ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+        
+    - name: Load custom feeds
+      run: |
+        chmod +x $DIY_P2_SH
+        cd openwrt
+        $GITHUB_WORKSPACE/$DIY_P2_SH
+              
+    - name: Update feeds
+      run: cd openwrt && ./scripts/feeds update -a
 
-      - name: Space cleanup
-        env:
-          DEBIAN_FRONTEND: noninteractive
-        run: |
-          docker rmi `docker images -q`
-          sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d
-          sudo -E apt-get -y purge ghc* zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* adoptopenjdk* mysql* php* mongodb* dotnet* moby* snapd* || true
-          sudo -E apt-get update
-          sudo -E apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs gcc-multilib g++-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler antlr3 gperf swig libtinfo5
-          sudo -E apt-get -y autoremove --purge
-          sudo -E apt-get clean
-
-          sudo mkdir -p -m 777 /mnt/openwrt/bin /mnt/openwrt/build_dir/host /mnt/openwrt/build_dir/hostpkg /mnt/openwrt/dl /mnt/openwrt/feeds /mnt/openwrt/staging_dir
-          ln -s /mnt/openwrt/bin ./bin
-          mkdir -p ./build_dir
-          ln -s -f /mnt/openwrt/build_dir/host ./build_dir/host
-          ln -s -f /mnt/openwrt/build_dir/hostpkg ./build_dir/hostpkg
-          ln -s /mnt/openwrt/dl ./dl
-          ln -s /mnt/openwrt/feeds ./feeds
-          ln -s /mnt/openwrt/staging_dir ./staging_dir
-
-      - name: Clone source code
-        working-directory: /workdir
-        run: |
-          df -hT $PWD
-          git clone https://github.com/coolsnowwolf/lede.git openwrt
-          ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
-           
-      - name: Update feeds
-        run: |
-          cd openwrt
-          sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
-          sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
-          ./scripts/feeds update -a && ./scripts/feeds install -a
+    - name: Install feeds
+      run: cd openwrt && ./scripts/feeds install -a
+      
+   # - name: Load custom configuration
+   #   run: |
+   #     [ -e files ] && mv files openwrt/files
+   #     [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
           
       - name: Generate configuration file
         run: |
