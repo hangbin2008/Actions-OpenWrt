@@ -47,8 +47,8 @@ sed -i '/exit 0/d' package/lean/default-settings/files/zzz-default-settings
 echo "exit 0" >> package/lean/default-settings/files/zzz-default-settings
 
 # Add additional packages
- git clone https://github.com/kenzok8/openwrt-packages.git package/kenzok8-package
- git clone https://github.com/kenzok8/small-package package/small-package 
+# git clone https://github.com/kenzok8/openwrt-packages.git package/kenzok8-package
+# git clone https://github.com/kenzok8/small-package package/small-package 
 # git clone https://github.com/sirpdboy/luci-theme-opentopd.git package/luci-theme-opentopd
 # git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
 # git clone https://github.com/jerrykuku/luci-app-argon-config.git package/luci-app-argon-config
