@@ -67,6 +67,7 @@ jobs:
         
     - name: Update feeds
       run: |
+          cd openwrt
           ./scripts/feeds update -a
           ./scripts/feeds install -a
 
@@ -77,7 +78,7 @@ jobs:
 
     - name: Generate configuration file
       run: |
-          chmod +x ./diy-part1.sh && ./diy-part1.sh
+          chmod +x ./diy-part1.sh && ./openwrt/diy-part1.sh
           cp ./passwall.config ./openwrt/.config
            make defconfig
 
