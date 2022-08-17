@@ -13,7 +13,7 @@ env:
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: makeconfig.d/Phicomm_N1.cofig
   DIY_P1_SH: makeconfig.d/Phicomm_N1.sh
-  #DIY_P2_SH: makeconfig.d/Phicomm_N2.sh
+  DIY_P2_SH: makeconfig.d/Phicomm_N2.sh
   TZ: Asia/Shanghai
 
 jobs:
