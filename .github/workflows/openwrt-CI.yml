@@ -78,18 +78,18 @@ jobs:
    #     [ -e files ] && mv files openwrt/files
    #     [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
           
-      - name: Generate configuration file
-        run: |
+    - name: Generate configuration file
+      run: |
           chmod +x ./customize.sh && ./customize.sh
           cp ./k2p.config ./openwrt/.config
           make defconfig
 
-      - name: Make download
+    - name: Make download
         run: |
           make download -j8
           find ./dl/ -size -1024c -exec rm -f {} \;
 
-      - name: Compile firmware
+    - name: Compile firmware
         run: |
           make -j$(nproc) || make -j1 V=s
           echo "======================="
@@ -100,7 +100,7 @@ jobs:
           du -h ./ --max-depth=1
           du -h /mnt/openwrt/ --max-depth=1
 
-      - name: Prepare artifact
+    - name: Prepare artifact
         run: |
           mkdir -p ./artifact/firmware
           mkdir -p ./artifact/package
@@ -110,25 +110,25 @@ jobs:
           cp -rf $(find ./bin/packages/ -type f -name "*.ipk") ./artifact/package/
           cp -rf $(find ./bin/targets/ -type f -name "*.buildinfo" -o -name "*.manifest") ./artifact/buildinfo/
 
-      - name: Deliver buildinfo
+    - name: Deliver buildinfo
         uses: actions/upload-artifact@v2
         with:
           name: OpenWrt_buildinfo
           path: ./artifact/buildinfo/
 
-      - name: Deliver package
+    - name: Deliver package
         uses: actions/upload-artifact@v2
         with:
           name: OpenWrt_package
           path: ./artifact/package/
 
-      - name: Deliver firmware
+    - name: Deliver firmware
         uses: actions/upload-artifact@v2
         with:
           name: OpenWrt_firmware
           path: ./bin/targets/
 
-      - name: Upload release asset
+    - name: Upload release asset
         if: github.event == 'release'
         uses: svenstaro/upload-release-action@v2
         with:
