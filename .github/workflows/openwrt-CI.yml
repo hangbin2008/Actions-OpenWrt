@@ -79,11 +79,10 @@ jobs:
     - name: Generate configuration file
       run: |
           cp -f diy-part1.sh openwrt
-          cp -f passwall.config openwrt
+          cp -f passwall.config openwrt/.config
           cd openwrt
           chmod +x ./diy-part1.sh && ./diy-part1.sh
-          cp ./passwall.config ./openwrt/.config
-           make defconfig
+          make defconfig
 
     - name: Make download
       run: |
