@@ -4,8 +4,8 @@ on:
   repository_dispatch:
   workflow_dispatch:
 
-  schedule:
-    - cron: 0 16 * * 4
+#  schedule:
+#    - cron: 0 16 * * 4
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
@@ -13,7 +13,7 @@ env:
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: makeconfig.d/Phicomm_N1.cofig
   DIY_P1_SH: makeconfig.d/Phicomm_N1.sh
-  #DIY_P2_SH: makeconfig.d/Phicomm_N1.sh
+  #DIY_P2_SH: makeconfig.d/Phicomm_N2.sh
   TZ: Asia/Shanghai
 
 jobs:
@@ -41,6 +41,7 @@ jobs:
         echo -e  "硬盘数量：$(ls /dev/sd* | grep -v [1-9] | wc -l) \n"
         echo "硬盘详情："
         df -Th
+        
     - name: 初始化编译环境
       env:
         DEBIAN_FRONTEND: noninteractive
@@ -62,12 +63,14 @@ jobs:
         docker rmi $(docker images -q)
         # sudo -E apt-get remove -y --purge azure-cli ghc zulu* llvm* firefox google* dotnet* powershell mysql* php* android*
         # sudo rm -rf /etc/mysql /etc/php /swapfile
+        
     - name: 克隆源码
       working-directory: /workdir
       run: |
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+        
     - name: 编译工具链缓存
       uses: klever1988/cachewrtbuild@main
       with:
@@ -80,6 +83,7 @@ jobs:
         chmod +x $DIY_P1_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P1_SH
+        
     - name: 更新feeds
       run: cd openwrt && ./scripts/feeds update -a
 
@@ -92,9 +96,10 @@ jobs:
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         cd openwrt
         sed -i 's#mount -t cifs#mount.cifs#g' feeds/luci/applications/luci-app-cifs-mount/root/etc/init.d/cifs
-       # chmod +x $DIY_P2_SH
-       # cd openwrt
-       # $GITHUB_WORKSPACE/$DIY_P2_SH
+        chmod +x $DIY_P2_SH
+        cd openwrt
+        $GITHUB_WORKSPACE/$DIY_P2_SH
+        
     - name: 下载软件包
       id: package
       run: |
@@ -103,6 +108,7 @@ jobs:
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
+        
     - name: 编译固件
       id: compile
       run: |
