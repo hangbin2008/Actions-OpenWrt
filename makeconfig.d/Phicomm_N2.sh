@@ -10,15 +10,6 @@
 # Description: OpenWrt DIY script part 2 (After Update feeds)
 #
 
-## 解除系统限制
-ulimit -u 10000
-ulimit -n 4096
-ulimit -d unlimited
-ulimit -m unlimited
-ulimit -s unlimited
-ulimit -t unlimited
-ulimit -v unlimited
-
 sed -i '/CYXluq4wUazHjmCDBCqXF/d' package/lean/default-settings/files/zzz-default-settings    # 设置密码为空
 
 # Modify default theme（FROM uci-theme-bootstrap CHANGE TO luci-theme-material）
@@ -89,6 +80,6 @@ sed -i 's#https://github.com/breakings/OpenWrt#https://github.com/quanjindeng/Ac
 sed -i 's#ARMv8#openwrt_armvirt#g' package/luci-app-amlogic/luci-app-amlogic/root/etc/config/amlogic
 sed -i 's#opt/kernel#kernel#g' package/luci-app-amlogic/luci-app-amlogic/root/etc/config/amlogic
 
-#sed -i 's#mount -t cifs#mount.cifs#g' feeds/luci/applications/luci-app-cifs-mount/root/etc/init.d/cifs
+sed -i 's#mount -t cifs#mount.cifs#g' feeds/luci/applications/luci-app-cifs-mount/root/etc/init.d/cifs
 
 #sed -i 's#<%+cbi/tabmenu%>##g' package/small-packages/luci-app-nginx-manager/luasrc/view/nginx-manager/index.htm
