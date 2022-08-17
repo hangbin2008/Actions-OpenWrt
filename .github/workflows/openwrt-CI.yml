@@ -80,25 +80,25 @@ jobs:
           
   - name: Generate configuration file
     run: |
-        chmod +x ./customize.sh && ./customize.sh
-        cp ./k2p.config ./openwrt/.config
-        make defconfig
+      chmod +x ./customize.sh && ./customize.sh
+      cp ./k2p.config ./openwrt/.config
+      make defconfig
 
   - name: Make download
     run: |
-        make download -j8
-        find ./dl/ -size -1024c -exec rm -f {} \;
+      make download -j8
+      find ./dl/ -size -1024c -exec rm -f {} \;
 
   - name: Compile firmware
     run: |
-        make -j$(nproc) || make -j1 V=s
-        echo "======================="
-        echo "Space usage:"
-        echo "======================="
-        df -h
-        echo "======================="
-        du -h ./ --max-depth=1
-        du -h /mnt/openwrt/ --max-depth=1
+      make -j$(nproc) || make -j1 V=s
+      echo "======================="
+      echo "Space usage:"
+      echo "======================="
+      df -h
+      echo "======================="
+      du -h ./ --max-depth=1
+      du -h /mnt/openwrt/ --max-depth=1
 
   - name: Prepare artifact
     run: |
@@ -125,14 +125,14 @@ jobs:
   - name: Deliver firmware
     uses: actions/upload-artifact@v2
     with:
-        name: OpenWrt_firmware
-        path: ./bin/targets/
+      name: OpenWrt_firmware
+      path: ./bin/targets/
 
   - name: Upload release asset
     if: github.event == 'release'
-      uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.STANDARD }}
-        file: ./artifact/firmware/*
-        tag: ${{ github.ref }}
-        file_glob: true
+    uses: svenstaro/upload-release-action@v2
+    with:
+      repo_token: ${{ secrets.STANDARD }}
+      file: ./artifact/firmware/*
+      tag: ${{ github.ref }}
+      file_glob: true
