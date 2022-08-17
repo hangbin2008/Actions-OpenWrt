@@ -9,46 +9,46 @@
 # File name: diy-part2.sh
 # Description: OpenWrt DIY script part 2 (After Update feeds)
 #
-#echo '修改机器名称'
-#sed -i 's/OpenWrt/Phicomm-N1/g' package/base-files/files/bin/config_generate
-# cpufreq
-# sed -i 's/LUCI_DEPENDS.*/LUCI_DEPENDS:=\@\(arm\|\|aarch64\)/g' package/lean/luci-app-cpufreq/Makefile
-# sed -i 's/services/system/g' package/lean/luci-app-cpufreq/luasrc/controller/cpufreq.lua
 
-## 解除系统限制
-ulimit -u 10000
-ulimit -n 4096
-ulimit -d unlimited
-ulimit -m unlimited
-ulimit -s unlimited
-ulimit -t unlimited
-ulimit -v unlimited
+sed -i '/CYXluq4wUazHjmCDBCqXF/d' package/lean/default-settings/files/zzz-default-settings    # 设置密码为空
 
-# Modify default IP
-sed -i 's/192.168.1.1/192.168.2.2/g' package/base-files/files/bin/config_generate
-# firewall custom
-echo "iptables -t nat -I POSTROUTING -o eth0 -j MASQUERADE" >> package/network/config/firewall/files/firewall.user
+# Modify default theme（FROM uci-theme-bootstrap CHANGE TO luci-theme-material）
+sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' ./feeds/luci/collections/luci/Makefile
 
-# Mod zzz-default-settings
-sed -i "/commit luci/i\uci set luci.main.mediaurlbase='/luci-static/argon'" package/lean/default-settings/files/zzz-default-settings
+# Modify some code adaptation
+#sed -i 's/LUCI_DEPENDS.*/LUCI_DEPENDS:=\@\(arm\|\|aarch64\)/g' feeds/luci/applications/luci-app-cpufreq/Makefile
 
-# Openwrt version
-version=$(grep "DISTRIB_REVISION=" package/lean/default-settings/files/zzz-default-settings  | awk -F "'" '{print $2}')
-sed -i '/DISTRIB_REVISION/d' package/lean/default-settings/files/zzz-default-settings
-echo "echo \"DISTRIB_REVISION='${version} $(TZ=UTC-8 date "+%Y.%m.%d") Compilde by hangbin'\" >> /etc/openwrt_release" >> package/lean/default-settings/files/zzz-default-settings
-sed -i '/exit 0/d' package/lean/default-settings/files/zzz-default-settings
-echo "exit 0" >> package/lean/default-settings/files/zzz-default-settings
+# Add autocore support for armvirt
+sed -i 's/TARGET_rockchip/TARGET_rockchip\|\|TARGET_armvirt/g' package/lean/autocore/Makefile
 
-# Add additional packages
-# git clone https://github.com/hangyubin/jell.git package/jell-package
-# git clone https://github.com/kenzok8/small-package package/small-package
-# git clone https://github.com/kenzok8/small.git package/small
-# git clone https://github.com/Boos4721/OpenWrt-Packages.git package/OpenWrt-Packages
-# git clone https://github.com/kenzok8/openwrt-packages.git package/helloworld
-# git clone https://github.com/kenzok8/small-package package/small-package 
-# git clone https://github.com/sirpdboy/luci-theme-opentopd.git package/luci-theme-opentopd
-# git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
-# git clone https://github.com/jerrykuku/luci-app-argon-config.git package/luci-app-argon-config
+# Set DISTRIB_REVISION
+sed -i "s/OpenWrt /Deng Build $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" package/lean/default-settings/files/zzz-default-settings
+
+# Modify default IP（FROM 192.168.1.1 CHANGE TO 10.10.10.1）
+sed -i 's/192.168.1.1/10.10.10.1/g' package/base-files/files/bin/config_generate
+
+# Modify system hostname（FROM OpenWrt CHANGE TO OpenWrt-N1）
+# sed -i 's/OpenWrt/OpenWrt-N1/g' package/base-files/files/bin/config_generate
+
+# Replace the default software source
+# sed -i 's#openwrt.proxy.ustclug.org#mirrors.bfsu.edu.cn\\/openwrt#' package/lean/default-settings/files/zzz-default-settings
+
+sed -i 's/invalid users = root/#invalid users = root/g' feeds/packages/net/samba4/files/smb.conf.template
+
+
+# 拉取软件包
+
+git clone https://github.com/ophub/luci-app-amlogic.git package/luci-app-amlogic
+git clone https://github.com/kenzok8/small-package package/small-package
+git clone -b luci https://github.com/pexcn/openwrt-chinadns-ng.git package/luci-app-chinadns-ng
+svn co https://github.com/immortalwrt-collections/openwrt-gowebdav/trunk/luci-app-gowebdav package/luci-app-gowebdav
+svn co https://github.com/immortalwrt-collections/openwrt-gowebdav/trunk/gowebdav package/gowebdav
+git clone https://github.com/jerrykuku/luci-app-argon-config.git package/luci-app-argon-config
+git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
+git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
+svn co https://github.com/kiddin9/openwrt-packages/trunk/UnblockNeteaseMusic-Go package/UnblockNeteaseMusic-Go
+svn co https://github.com/kiddin9/openwrt-packages/trunk/luci-app-unblockneteasemusic-go package/luci-app-unblockneteasemusic-go
+
 
 # 删除重复包
 
@@ -65,3 +65,21 @@ rm -rf package/small-package/luci-theme-argon*
 rm -rf package/small-package/luci-app-amlogic
 rm -rf package/small-package/luci-app-unblockneteasemusic
 
+
+# 其他调整
+NAME=$"package/luci-app-unblockneteasemusic/root/usr/share/unblockneteasemusic" && mkdir -p $NAME/core
+curl 'https://api.github.com/repos/UnblockNeteaseMusic/server/commits?sha=enhanced&path=precompiled' -o commits.json
+echo "$(grep sha commits.json | sed -n "1,1p" | cut -c 13-52)">"$NAME/core_local_ver"
+curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/precompiled/app.js -o $NAME/core/app.js
+curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/precompiled/bridge.js -o $NAME/core/bridge.js
+curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/ca.crt -o $NAME/core/ca.crt
+curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/server.crt -o $NAME/core/server.crt
+curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/server.key -o $NAME/core/server.key
+
+sed -i 's#https://github.com/breakings/OpenWrt#https://github.com/quanjindeng/Actions_OpenWrt-Amlogic#g' package/luci-app-amlogic/luci-app-amlogic/root/etc/config/amlogic
+sed -i 's#ARMv8#openwrt_armvirt#g' package/luci-app-amlogic/luci-app-amlogic/root/etc/config/amlogic
+sed -i 's#opt/kernel#kernel#g' package/luci-app-amlogic/luci-app-amlogic/root/etc/config/amlogic
+
+sed -i 's#mount -t cifs#mount.cifs#g' feeds/luci/applications/luci-app-cifs-mount/root/etc/init.d/cifs
+
+#sed -i 's#<%+cbi/tabmenu%>##g' package/small-packages/luci-app-nginx-manager/luasrc/view/nginx-manager/index.htm
