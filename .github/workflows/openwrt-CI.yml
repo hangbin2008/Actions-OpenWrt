@@ -10,10 +10,12 @@
 name: OpenWrt-CI
 
 on:
-  schedule:
-    - cron: 0 20 * * *
-  release:
-    types: [published]
+  repository_dispatch:
+  workflow_dispatch:
+  #schedule:
+  #  - cron: 0 20 * * *
+  #release:
+  #  types: [published]
 
 jobs:
 
