@@ -10,6 +10,15 @@
 # Description: OpenWrt DIY script part 2 (After Update feeds)
 #
 
+## 解除系统限制
+ulimit -u 10000
+ulimit -n 4096
+ulimit -d unlimited
+ulimit -m unlimited
+ulimit -s unlimited
+ulimit -t unlimited
+ulimit -v unlimited
+
 sed -i '/CYXluq4wUazHjmCDBCqXF/d' package/lean/default-settings/files/zzz-default-settings    # 设置密码为空
 
 # Modify default theme（FROM uci-theme-bootstrap CHANGE TO luci-theme-material）
