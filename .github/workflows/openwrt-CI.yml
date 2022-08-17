@@ -78,7 +78,9 @@ jobs:
 
     - name: Generate configuration file
       run: |
-          chmod +x ./diy-part1.sh && ./openwrt/diy-part1.sh
+          cp -f diy-part1.sh openwrt
+          cd openwrt
+          chmod +x ./diy-part1.sh && ./diy-part1.sh
           cp ./passwall.config ./openwrt/.config
            make defconfig
 
