@@ -1,4 +1,4 @@
-name: 编译固件（自用）
+name: Phicomm N1（自用）
 
 on:
   repository_dispatch:
