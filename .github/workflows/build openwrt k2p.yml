@@ -170,8 +170,36 @@ jobs:
       run: |
         echo "::set-output name=release_tag::k2p-$(date +"%Y.%m.%d-%H%M")"
         touch release.txt
-        [ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
+        echo "## 📦‍ 固件下载 | Phicomm K2P " >> release.txt
+        #[ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
         [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
+        echo -e "## ✨ 主要功能\n1. argon主题\n2. argon主题设置\n3. 应用商店\n4. 释放内存\n5. wol 网络唤醒\n6. 磁盘管理工具\n7. smartdns DNS防污染\n8. clash的图形代理软件\n9. aria2下载工具\n10. ZeroTier内网穿透\n11. Turbo ACC 网络加速(支持 Fast Path 或者 硬件 NAT)\n12. 迅雷快鸟\n13. 应用过滤\n14. CPU 性能优化调节\n15. ttyd 终端\n16. 微信/Telegram推送\n17. BT下载工具\n18. 京东签到服务" >> release.txt
+        echo "::set-output name=status::success"
+    - name: Upload firmware to release
+      uses: softprops/action-gh-release@v1
+      if: steps.tag.outputs.status == 'success' && !cancelled() && !failure()
+      env:
+        GITHUB_TOKEN: ${{ secrets.AC_GH_TOKEN }}
+      with:
+        tag_name: ${{ steps.tag.outputs.release_tag }}
+        body_path: release.txt
+        files: ${{ env.FIRMWARE }}/*
+
+    - name: Delete workflow runs
+      uses: GitRML/delete-workflow-runs@main
+      with:
+        retain_days: 1
+        keep_minimum_runs: 3
+
+    - name: Remove old Releases
+      uses: dev-drprasad/delete-older-releases@v0.2.0
+      if: env.UPLOAD_RELEASE == 'true' && !cancelled() && !failure()
+      with:
+        keep_latest: 4
+        delete_tags: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
         echo "::set-output name=status::success"
 
     - name: Upload firmware to release
