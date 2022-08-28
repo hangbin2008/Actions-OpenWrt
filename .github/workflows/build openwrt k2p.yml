@@ -139,12 +139,12 @@ jobs:
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "::set-output name=status::success"
 
-    - name: Upload firmware directory
-      uses: actions/upload-artifact@main
-      if: steps.organize.outputs.status == 'success' && !cancelled()
-      with:
-        name: OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
-        path: ${{ env.FIRMWARE }}
+   # - name: Upload firmware directory
+   #   uses: actions/upload-artifact@main
+   #   if: steps.organize.outputs.status == 'success' && !cancelled()
+   #   with:
+   #     name: OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
+   #     path: ${{ env.FIRMWARE }}
 
    # - name: Upload firmware to cowtransfer
    #   id: cowtransfer
@@ -178,7 +178,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       if: steps.tag.outputs.status == 'success' && !cancelled() && !failure()
       env:
-        GITHUB_TOKEN: ${{ secrets.AC_GH_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.github_TOKEN }}
       with:
         tag_name: ${{ steps.tag.outputs.release_tag }}
         body_path: release.txt
