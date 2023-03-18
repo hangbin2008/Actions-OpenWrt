@@ -1,4 +1,4 @@
-name: Phicomm N1（自用）
+name: openwrt amlogic 多合一（自用）
 
 on:
   repository_dispatch:
