@@ -11,7 +11,7 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: makeconfig.d/Phicomm_N1.config
+  CONFIG_FILE: makeconfig.d/newn1.config
   DIY_P1_SH: makeconfig.d/Phicomm_N1.sh
   DIY_P2_SH: makeconfig.d/Phicomm_N2.sh
   TZ: Asia/Shanghai
