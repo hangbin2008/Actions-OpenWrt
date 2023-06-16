@@ -11,7 +11,7 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: makeconfig.d/newn1.config
+  CONFIG_FILE: makeconfig.d/n1.config
   DIY_P1_SH: makeconfig.d/Phicomm_N1.sh
   DIY_P2_SH: makeconfig.d/Phicomm_N2.sh
   TZ: Asia/Shanghai
@@ -146,10 +146,16 @@ jobs:
     - name: 打包内核
       uses: ophub/flippy-openwrt-actions@main
       env:
+       WHOAMI: hangbin
        OPENWRT_ARMVIRT: openwrt-armvirt/*.tar.gz
        PACKAGE_SOC: s905d_s905x3_beikeyun
        KERNEL_VERSION_NAME: 6.1.10_5.15.50
+       GZIP_IMGS: .xz
+       SW_FLOWOFFLOAD: 0
+       SFE_FLOW: 0
+       ENABLE_WIFI_K510: 0
        GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+       
     
     - name: 发布固件
       uses: ncipollo/release-action@v1
