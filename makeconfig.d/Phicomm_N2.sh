@@ -53,7 +53,8 @@ app-chinadns-ng
 
 
 # 删除重复包
-
+rm -rf feeds/packages/net/mosdns
+rm -rf package/small-package/luci-app-mosdns
 # rm -rf feeds/luci/applications/luci-app-netdata
 rm -rf feeds/luci/themes/luci-theme-argon
 rm -rf package/small-package/luci-app-openvpn-server
