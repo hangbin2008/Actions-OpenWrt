@@ -20,7 +20,7 @@
 #sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
 ## 常用OpenWrt软件包源码合集，同步上游更新！
 ## 通用版luci适合18.06与19.07
-# echo 'src-git small8 https://github.com/kenzok8/small-package' >>feeds.conf.default
+echo 'src-git small8 https://github.com/kenzok8/small-package' >>feeds.conf.default
 
 
 ## 解除系统限制
