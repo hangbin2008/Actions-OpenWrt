@@ -39,11 +39,9 @@ sed -i 's/invalid users = root/#invalid users = root/g' feeds/packages/net/samba
 sed -i '/exit 0/i\chmod +x /etc/init.d/*' package/lean/default-settings/files/zzz-default-settings
 
 # 拉取软件包
-git clone https://github.com/sbwml/luci-app-mosdns package/mosdns
-git clone https://github.com/sbwml/v2ray-geodata package/geodata
-git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
-git clone https://github.com/ophub/luci-app-amlogic.git package/luci-app-amlogic
 git clone https://github.com/kenzok8/small-package package/small-package
+#git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
+#git clone https://github.com/ophub/luci-app-amlogic.git package/luci-app-amlogic
 # git clone -b luci https://github.com/pexcn/openwrt-chinadns-ng.git package/luci-
 app-chinadns-ng
 # svn co https://github.com/immortalwrt-collections/openwrt-gowebdav/trunk/luci-app-gowebdav package/luci-app-gowebdav
@@ -102,4 +100,5 @@ rm -rf package/small-package/alist/patches/001-disable-delete-of-temp-directory-
 # mosdns
 find ./ | grep Makefile | grep v2ray-geodata | xargs rm -f
 find ./ | grep Makefile | grep mosdns | xargs rm -f
-
+git clone https://github.com/sbwml/luci-app-mosdns package/mosdns
+git clone https://github.com/sbwml/v2ray-geodata package/geodata
