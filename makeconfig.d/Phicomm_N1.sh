@@ -22,7 +22,6 @@
 ## 通用版luci适合18.06与19.07
 git clone https://github.com/kenzok8/small-package package/small-package
 svn co https://github.com/nantayo/passwall/trunk package/passwall
-svn co https://github.com/ophub/luci-app-amlogic/trunk package/amlogic
 svn co https://github.com/sbwml/luci-app-mosdns/trunk package/mosdns
 git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
 
