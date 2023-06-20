@@ -38,6 +38,11 @@ sed -i 's/invalid users = root/#invalid users = root/g' feeds/packages/net/samba
 # 修复部分插件自启动脚本丢失可执行权限问题
 sed -i '/exit 0/i\chmod +x /etc/init.d/*' package/lean/default-settings/files/zzz-default-settings
 
+# add packages
+svn co https://github.com/nantayo/passwall/trunk package/passwall
+svn co https://github.com/sbwml/luci-app-mosdns/trunk package/mosdns
+git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
+
 # Remove packages
 rm -rf fpackage/small-package/luci-app-passwall
 rm -rf feeds/packages/net/mosdns
