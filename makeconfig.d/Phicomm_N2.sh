@@ -44,10 +44,10 @@ svn co https://github.com/sbwml/luci-app-mosdns/trunk package/mosdns
 git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
 
 # Remove packages
-rm -rf fpackage/small-package/luci-app-passwall
+rm -rf feeds/small8/luci-app-passwall
 rm -rf feeds/packages/net/mosdns
-rm -rf package/small-package/luci-app-mosdns
+rm -rf feeds/small8/luci-app-mosdns
 rm -rf feeds/luci/themes/luci-theme-argon
-rm -rf package/small-package/luci-theme-argon
-
+rm -rf feeds/small8/luci-theme-argon
+rm -rf feeds/small8/v2ray-geodata
 
