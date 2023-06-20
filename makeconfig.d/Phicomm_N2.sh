@@ -41,8 +41,8 @@ sed -i '/exit 0/i\chmod +x /etc/init.d/*' package/lean/default-settings/files/zz
 # Remove packages
 rm -rf fpackage/small-package/luci-app-passwall
 rm -rf feeds/packages/net/mosdns
+rm -rf package/small-package/luci-app-mosdns
 rm -rf feeds/luci/themes/luci-theme-argon
 rm -rf package/small-package/luci-theme-argon
-
 
 
