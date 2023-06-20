@@ -21,9 +21,7 @@
 ## 常用OpenWrt软件包源码合集，同步上游更新！
 ## 通用版luci适合18.06与19.07
 git clone https://github.com/kenzok8/small-package package/small-package
-svn co https://github.com/nantayo/passwall/trunk package/passwall
-svn co https://github.com/sbwml/luci-app-mosdns/trunk package/mosdns
-git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
+
 
 ## 解除系统限制
 ulimit -u 10000
