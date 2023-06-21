@@ -50,5 +50,3 @@ rm -rf feeds/small8/luci-app-mosdns
 rm -rf feeds/luci/themes/luci-theme-argon
 rm -rf feeds/small8/luci-theme-argon
 rm -rf feeds/small8/v2ray-geodata
-#rm -rf feeds/small8/haproxy
-#rm -rf feeds/packages/net/haproxy
