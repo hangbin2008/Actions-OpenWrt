@@ -43,16 +43,23 @@ sed -i '/exit 0/i\chmod +x /etc/init.d/*' package/lean/default-settings/files/zz
 
 # add packages
 #svn co https://github.com/nantayo/passwall/trunk package/passwall
-svn co https://github.com/sbwml/luci-app-mosdns/trunk package/mosdns
+#svn co https://github.com/sbwml/luci-app-mosdns/trunk package/mosdns
 git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
 
 # Remove packages
 #rm -rf feeds/small8/luci-app-passwall
 rm -rf feeds/packages/net/mosdns
-rm -rf feeds/small8/luci-app-mosdns
+#rm -rf feeds/small8/luci-app-mosdns
 rm -rf feeds/luci/themes/luci-theme-argon
 rm -rf feeds/small8/luci-theme-argon
-rm -rf feeds/small8/v2ray-geodata
+#rm -rf feeds/small8/v2ray-geodata
+
+# drop mosdns and v2ray-geodata packages that come with the source
+find ./ | grep Makefile | grep v2ray-geodata | xargs rm -f
+find ./ | grep Makefile | grep mosdns | xargs rm -f
+
+git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
+git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 
 # Openwrt version
 version=$(grep "DISTRIB_REVISION=" package/lean/default-settings/files/zzz-default-settings  | awk -F "'" '{print $2}')
