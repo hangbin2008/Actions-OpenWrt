@@ -148,7 +148,7 @@ jobs:
       env:
        WHOAMI: hangbin
        OPENWRT_ARMVIRT: openwrt-armvirt/*.tar.gz
-       PACKAGE_SOC: s905d_s905x3_beikeyun
+       PACKAGE_SOC: s905d_s905x3
        KERNEL_VERSION_NAME: 6.1.10_5.15.50
        GZIP_IMGS: .xz
        SW_FLOWOFFLOAD: 0
