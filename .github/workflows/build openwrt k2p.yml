@@ -24,8 +24,8 @@ env:
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: k2p.config
-  DIY_P1_SH: makeconfig.d\diy-part1-k2p.sh
-  DIY_P2_SH: makeconfig.d\diy-part2-k2p.sh
+  DIY_P1_SH: makeconfig.d/diy-part1-k2p.sh
+  DIY_P2_SH: makeconfig.d/diy-part2-k2p.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
