@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build x86_64_OpenWrt for kenzok8-package
+name: Build x86_64_OpenWrt 
 
 on:
   repository_dispatch:
