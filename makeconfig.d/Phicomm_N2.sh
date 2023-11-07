@@ -10,7 +10,7 @@
 # Description: OpenWrt DIY script part 2 (After Update feeds)
 #
 
-sed -i '/CYXluq4wUazHjmCDBCqXF/d' package/lean/default-settings/files/zzz-default-settings    # 设置密码为空
+# sed -i '/CYXluq4wUazHjmCDBCqXF/d' package/lean/default-settings/files/zzz-default-settings    # 设置密码为空
 
 # Modify default theme（FROM uci-theme-bootstrap CHANGE TO luci-theme-material）
 sed -i 's/luci-theme-bootstrap/luci-theme-argone/g' ./feeds/luci/collections/luci/Makefile
@@ -42,9 +42,9 @@ sed -i 's/invalid users = root/#invalid users = root/g' feeds/packages/net/samba
 sed -i '/exit 0/i\chmod +x /etc/init.d/*' package/lean/default-settings/files/zzz-default-settings
 
 # add packages
-#svn co https://github.com/nantayo/passwall/trunk package/passwall
-#svn co https://github.com/sbwml/luci-app-mosdns/trunk package/mosdns
-git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
+# svn co https://github.com/nantayo/passwall/trunk package/passwall
+# svn co https://github.com/sbwml/luci-app-mosdns/trunk package/mosdns
+# git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
 
 # Remove packages
 #rm -rf feeds/small8/luci-app-passwall
