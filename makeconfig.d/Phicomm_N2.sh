@@ -47,12 +47,12 @@ sed -i '/exit 0/i\chmod +x /etc/init.d/*' package/lean/default-settings/files/zz
 # git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
 
 # Remove packages
-#rm -rf feeds/small8/luci-app-passwall
+# rm -rf feeds/small8/luci-app-passwall
 rm -rf feeds/packages/net/mosdns
-#rm -rf feeds/small8/luci-app-mosdns
-rm -rf feeds/luci/themes/luci-theme-argon
-rm -rf feeds/small8/luci-theme-argon
-#rm -rf feeds/small8/v2ray-geodata
+# rm -rf feeds/small8/luci-app-mosdns
+# rm -rf feeds/luci/themes/luci-theme-argon
+# rm -rf feeds/small8/luci-theme-argon
+# rm -rf feeds/small8/v2ray-geodata
 
 # drop mosdns and v2ray-geodata packages that come with the source
 find ./ | grep Makefile | grep v2ray-geodata | xargs rm -f
