@@ -39,10 +39,9 @@ sed -i 's/invalid users = root/#invalid users = root/g' feeds/packages/net/samba
 #sed -i '/exit 0/i\chmod +x /etc/init.d/*' package/lean/default-settings/files/zzz-default-settings
 
 # 拉取软件包
+git clone https://github.com/hangyubin/openwrt-packages.git package/kinddin9
 git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
-svn co https://github.com/nantayo/passwall/trunk package/passwall
-svn co https://github.com/sbwml/luci-app-mosdns/trunk package/mosdns
-git clone https://github.com/hangyubin/luci-app-adguardhome.git package/adghome
+
 
 # 删除重复包
 rm -rf feeds/luci/applications/luci-app-passwall
