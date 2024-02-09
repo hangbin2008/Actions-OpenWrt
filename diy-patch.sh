@@ -19,10 +19,8 @@
 
 ## 常用OpenWrt软件包源码合集，同步上游更新！
 ## 通用版luci适合18.06与19.07
-git clone https://github.com/hangyubin/openwrt-packages.git package/kinddin9
-# sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
-# sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
 
+sed -i '$a src-git kinddin9 https://github.com/hangyubin/openwrt-packages' feeds.conf.default
 
 ## 解除系统限制
 ulimit -u 10000
