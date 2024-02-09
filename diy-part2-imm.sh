@@ -50,4 +50,4 @@ rm -rf feeds/packages/net/v2ray-geodata
 rm -rf feeds/luci/themes/luci-theme-argon
 
 # 其他调整
-sed -i 's#mount -t cifs#mount.cifs#g' feeds/luci/applications/luci-app-cifs-mount/root/etc/init.d/cifs
+# sed -i 's#mount -t cifs#mount.cifs#g' feeds/luci/applications/luci-app-cifs-mount/root/etc/init.d/cifs
