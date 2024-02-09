@@ -39,7 +39,6 @@ sed -i 's/invalid users = root/#invalid users = root/g' feeds/packages/net/samba
 #sed -i '/exit 0/i\chmod +x /etc/init.d/*' package/lean/default-settings/files/zzz-default-settings
 
 # 拉取软件包
-git clone https://github.com/hangyubin/openwrt-packages.git package/kinddin9
 git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
 
 
