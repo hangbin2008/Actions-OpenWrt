@@ -22,12 +22,3 @@
 
 #sed -i '$a src-git kiddin9 https://github.com/kiddin9/openwrt-packages' feeds.conf.default
 
-
-## 解除系统限制
-ulimit -u 10000
-ulimit -n 4096
-ulimit -d unlimited
-ulimit -m unlimited
-ulimit -s unlimited
-ulimit -t unlimited
-ulimit -v unlimited
