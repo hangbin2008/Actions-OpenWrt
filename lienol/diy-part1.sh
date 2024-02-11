@@ -20,7 +20,7 @@
 ## 常用OpenWrt软件包源码合集，同步上游更新！
 ## 通用版luci适合21.02及以上版本
 
-sed -i '$a src-git kiddin9 https://github.com/kiddin9/openwrt-packages' feeds.conf.default
+#sed -i '$a src-git kiddin9 https://github.com/kiddin9/openwrt-packages' feeds.conf.default
 
 
 ## 解除系统限制
