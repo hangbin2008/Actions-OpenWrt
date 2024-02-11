@@ -43,11 +43,11 @@ git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-a
 
 
 # 删除重复包
-rm -rf feeds/luci/applications/luci-app-passwall
-rm -rf feeds/packages/net/haproxy
-rm -rf feeds/packages/net/mosdns
-rm -rf feeds/packages/net/v2ray-geodata
-rm -rf feeds/luci/themes/luci-theme-argon
+#rm -rf feeds/luci/applications/luci-app-passwall
+#rm -rf feeds/packages/net/haproxy
+#rm -rf feeds/packages/net/mosdns
+#rm -rf feeds/packages/net/v2ray-geodata
+#rm -rf feeds/luci/themes/luci-theme-argon
 
 # 其他调整
 # sed -i 's#mount -t cifs#mount.cifs#g' feeds/luci/applications/luci-app-cifs-mount/root/etc/init.d/cifs
