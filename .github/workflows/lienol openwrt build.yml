@@ -21,7 +21,7 @@ on:
 
 env:
   REPO_URL: https://github.com/Lienol/openwrt.git
-  REPO_BRANCH: 22.03
+  REPO_BRANCH: 23.05
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: lienol/x86.config
   DIY_P1_SH: lienol/diy-part1.sh
@@ -59,7 +59,7 @@ jobs:
       run: |
         df -hT $PWD
         #git clone $REPO_URL -b $REPO_BRANCH openwrt
-        git clone -b 22.03 --single-branch https://github.com/Lienol/openwrt openwrt
+        #git clone -b 22.03 --single-branch https://github.com/Lienol/openwrt openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
     - name: 自定义软件源
