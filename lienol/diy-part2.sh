@@ -41,7 +41,7 @@ sed -i 's/invalid users = root/#invalid users = root/g' feeds/packages/net/samba
 # 拉取软件包
 git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
 git clone https://github.com/hangyubin/homeproxy.git package/homeproxy
-
+git_sparse_clone master https://github.com/vernesong/OpenClash luci-app-openclash
 # 删除重复包
 #rm -rf feeds/luci/applications/luci-app-passwall
 #rm -rf feeds/packages/net/haproxy
@@ -51,3 +51,10 @@ git clone https://github.com/hangyubin/homeproxy.git package/homeproxy
 
 # 其他调整
 # sed -i 's#mount -t cifs#mount.cifs#g' feeds/luci/applications/luci-app-cifs-mount/root/etc/init.d/cifs
+echo "CONFIG_PACKAGE_luci=y" >> ./.config
+echo "CONFIG_LUCI_LANG_zh_Hans=y" >> ./.config
+echo "CONFIG_PACKAGE_luci-app-homeproxy=y" >> ./.config
+echo "CONFIG_PACKAGE_luci-app-openclash=y" >> ./.config
+echo "CONFIG_PACKAGE_luci-theme-argon=y" >> ./.config
+
+
