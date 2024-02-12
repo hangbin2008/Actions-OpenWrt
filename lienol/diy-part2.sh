@@ -39,8 +39,8 @@ sed -i 's/invalid users = root/#invalid users = root/g' feeds/packages/net/samba
 #sed -i '/exit 0/i\chmod +x /etc/init.d/*' package/lean/default-settings/files/zzz-default-settings
 
 # 拉取软件包
-# git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
 # git clone https://github.com/hangyubin/homeproxy.git package/homeproxy
+git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
 git clone --depth 1 https://github.com/vernesong/OpenClash.git && mv OpenClash/luci-app-openclash ./package && rm -rf OpenClash
 # 删除重复包
 #rm -rf feeds/luci/applications/luci-app-passwall
@@ -51,10 +51,10 @@ git clone --depth 1 https://github.com/vernesong/OpenClash.git && mv OpenClash/l
 
 # 其他调整
 # sed -i 's#mount -t cifs#mount.cifs#g' feeds/luci/applications/luci-app-cifs-mount/root/etc/init.d/cifs
-echo "CONFIG_PACKAGE_luci=y" >> ./.config
-echo "CONFIG_LUCI_LANG_zh_Hans=y" >> ./.config
-echo "CONFIG_PACKAGE_luci-app-homeproxy=y" >> ./.config
-echo "CONFIG_PACKAGE_luci-app-openclash=y" >> ./.config
-echo "CONFIG_PACKAGE_luci-theme-argon=y" >> ./.config
+# echo "CONFIG_PACKAGE_luci-app-homeproxy=y" >> ./.config
+# echo "CONFIG_PACKAGE_luci=y" >> ./.config
+# echo "CONFIG_LUCI_LANG_zh_Hans=y" >> ./.config
+# echo "CONFIG_PACKAGE_luci-app-openclash=y" >> ./.config
+# echo "CONFIG_PACKAGE_luci-theme-argon=y" >> ./.config
 
 
