@@ -41,7 +41,7 @@ sed -i 's/invalid users = root/#invalid users = root/g' feeds/packages/net/samba
 # 拉取软件包
 # git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
 # git clone https://github.com/hangyubin/homeproxy.git package/homeproxy
-# git_sparse_clone master https://github.com/vernesong/OpenClash luci-app-openclash
+git_sparse_clone master https://github.com/vernesong/OpenClash luci-app-openclash
 # 删除重复包
 #rm -rf feeds/luci/applications/luci-app-passwall
 #rm -rf feeds/packages/net/haproxy
