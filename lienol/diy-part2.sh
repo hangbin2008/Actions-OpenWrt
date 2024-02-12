@@ -49,6 +49,7 @@ git clone --depth 1 https://github.com/vernesong/OpenClash.git && mv OpenClash/l
 #rm -rf feeds/packages/net/mosdns
 #rm -rf feeds/packages/net/v2ray-geodata
 #rm -rf feeds/luci/themes/luci-theme-argon
+rm -rf feeds/luci/applications/luci-app-dockerman
 
 # 其他调整
 # sed -i 's#mount -t cifs#mount.cifs#g' feeds/luci/applications/luci-app-cifs-mount/root/etc/init.d/cifs
