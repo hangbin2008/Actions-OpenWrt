@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build lienol x86_64_OpenWrt 
+name: Build immortalwrt x86_64_OpenWrt 
 
 on:
   repository_dispatch:
@@ -20,8 +20,8 @@ on:
  #       default: 'false'
 
 env:
-  REPO_URL: https://github.com/Lienol/openwrt.git
-  REPO_BRANCH: 23.05
+  REPO_URL: https://github.com/immortalwrt/immortalwrt
+  REPO_BRANCH: openwrt-23.05
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: lienol/x86.config
   DIY_P1_SH: lienol/diy-part1.sh
