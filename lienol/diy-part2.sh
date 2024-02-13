@@ -10,10 +10,10 @@
 # Description: OpenWrt DIY script part 2 (After Update feeds)
 
 
-#sed -i '/CYXluq4wUazHjmCDBCqXF/d' package/lean/default-settings/files/zzz-default-settings    # 设置密码为空
+# sed -i '/CYXluq4wUazHjmCDBCqXF/d' package/lean/default-settings/files/zzz-default-settings    # 设置密码为空
 
 # Modify default theme（FROM uci-theme-bootstrap CHANGE TO luci-theme-material）
-sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' ./feeds/luci/collections/luci/Makefile
+
 
 # Modify some code adaptation
 #sed -i 's/LUCI_DEPENDS.*/LUCI_DEPENDS:=\@\(arm\|\|aarch64\)/g' feeds/luci/applications/luci-app-cpufreq/Makefile
@@ -58,5 +58,5 @@ rm -rf feeds/luci/applications/luci-app-dockerman
 # echo "CONFIG_LUCI_LANG_zh_Hans=y" >> ./.config
 # echo "CONFIG_PACKAGE_luci-app-openclash=y" >> ./.config
 # echo "CONFIG_PACKAGE_luci-theme-argon=y" >> ./.config
-
+sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' ./feeds/luci/collections/luci/Makefile
 
