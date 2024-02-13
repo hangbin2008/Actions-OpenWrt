@@ -36,20 +36,20 @@ sed -i 's/192.168.1.1/192.168.2.2/g' package/base-files/files/bin/config_generat
 sed -i 's/invalid users = root/#invalid users = root/g' feeds/packages/net/samba4/files/smb.conf.template
 
 # 修复部分插件自启动脚本丢失可执行权限问题
-#sed -i '/exit 0/i\chmod +x /etc/init.d/*' package/lean/default-settings/files/zzz-default-settings
+# sed -i '/exit 0/i\chmod +x /etc/init.d/*' package/lean/default-settings/files/zzz-default-settings
 
 # 拉取软件包
 # git clone https://github.com/hangyubin/homeproxy.git package/homeproxy
-git clone https://github.com/lisaac/luci-app-dockerman package/luci-app-dockerman
-git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
-git clone --depth 1 https://github.com/vernesong/OpenClash.git && mv OpenClash/luci-app-openclash ./package && rm -rf OpenClash
+# git clone https://github.com/lisaac/luci-app-dockerman package/luci-app-dockerman
+# git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
+# git clone --depth 1 https://github.com/vernesong/OpenClash.git && mv OpenClash/luci-app-openclash ./package && rm -rf OpenClash
 # 删除重复包
-#rm -rf feeds/luci/applications/luci-app-passwall
-#rm -rf feeds/packages/net/haproxy
-#rm -rf feeds/packages/net/mosdns
-#rm -rf feeds/packages/net/v2ray-geodata
-#rm -rf feeds/luci/themes/luci-theme-argon
-rm -rf feeds/luci/applications/luci-app-dockerman
+# rm -rf feeds/luci/applications/luci-app-passwall
+# rm -rf feeds/packages/net/haproxy
+# rm -rf feeds/packages/net/mosdns
+# rm -rf feeds/packages/net/v2ray-geodata
+# rm -rf feeds/luci/themes/luci-theme-argon
+# rm -rf feeds/luci/applications/luci-app-dockerman
 
 # 其他调整
 # sed -i 's#mount -t cifs#mount.cifs#g' feeds/luci/applications/luci-app-cifs-mount/root/etc/init.d/cifs
