@@ -41,14 +41,14 @@ sed -i 's/invalid users = root/#invalid users = root/g' feeds/packages/net/samba
 # 拉取软件包
 # git clone https://github.com/hangyubin/homeproxy.git package/homeproxy
 # git clone https://github.com/lisaac/luci-app-dockerman package/luci-app-dockerman
-# git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
+git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
 # git clone --depth 1 https://github.com/vernesong/OpenClash.git && mv OpenClash/luci-app-openclash ./package && rm -rf OpenClash
 # 删除重复包
 # rm -rf feeds/luci/applications/luci-app-passwall
 # rm -rf feeds/packages/net/haproxy
 # rm -rf feeds/packages/net/mosdns
 # rm -rf feeds/packages/net/v2ray-geodata
-# rm -rf feeds/luci/themes/luci-theme-argon
+rm -rf feeds/luci/themes/luci-theme-argon
 # rm -rf feeds/luci/applications/luci-app-dockerman
 
 # 其他调整
