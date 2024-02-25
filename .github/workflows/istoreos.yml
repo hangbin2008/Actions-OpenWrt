@@ -14,10 +14,10 @@ on:
 env:
   REPO_URL: https://github.com/istoreos/istoreos
   # REPO_BRANCH: main
-  FEEDS_CONF: feeds.conf
-  CONFIG_FILE: .config
-  DIY_P1_SH: diy-part1.sh
-  DIY_P2_SH: diy-part2.sh
+  FEEDS_CONF: istoreos/feeds.conf
+  CONFIG_FILE: istoreos/x86.config
+  DIY_P1_SH: istoreos/diy-part1.sh
+  DIY_P2_SH: istoreos/diy-part2.sh
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
