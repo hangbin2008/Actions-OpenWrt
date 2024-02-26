@@ -22,7 +22,7 @@ on:
 env:
   REPO_URL: https://github.com/istoreos/istoreos
   REPO_BRANCH: istoreos-22.03
-  FEEDS_CONF: feeds.conf.default
+  FEEDS_CONF: istoreos/feeds.conf
   CONFIG_FILE: istoreos/x86.config
   DIY_P1_SH: istoreos/diy-part1.sh
   DIY_P2_SH: istoreos/diy-part2.sh
@@ -64,7 +64,10 @@ jobs:
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
     - name: 自定义软件源
+      env:
+        FEEDS_CONF_PATH: $FEEDS_CONF
       run: |
+        [ -e $FEEDS_CONF_PATH ] && mv $FEEDS_CONF_PATH openwrt/$FEEDS_CONF
         chmod +x $DIY_P1_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P1_SH
