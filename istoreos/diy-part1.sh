@@ -20,7 +20,7 @@
 echo 'src-git nas https://github.com/linkease/nas-packages.git;master' >> feeds.conf.default
 echo 'src-git nas_luci https://github.com/linkease/nas-packages-luci.git;main' >> feeds.conf.default
 echo 'src-git diskman https://github.com/jjm2473/luci-app-diskman;dev' >> feeds.conf.default
-
+echo 'src-git third_party https://github.com/linkease/istore-packages.git;main' >> feeds.conf.default
 ## 常用OpenWrt软件包源码合集，同步上游更新！
 ## 通用版luci适合21.02及以上版本
 
