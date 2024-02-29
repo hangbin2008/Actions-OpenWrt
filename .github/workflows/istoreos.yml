@@ -23,8 +23,8 @@ on:
 
 env:
   REPO_URL: https://github.com/istoreos/istoreos
-  # REPO_BRANCH: main
-  FEEDS_CONF: feeds.conf
+  REPO_BRANCH: istoreos-22.03
+  FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: istoreos/x86.config
   DIY_P1_SH: istoreos/diy-part1.sh
   DIY_P2_SH: istoreos/diy-part2.sh
@@ -36,23 +36,11 @@ env:
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        REPO_BRANCH:
-          # - main
-          - istoreos-22.03
-          # - istoreos-23.05
-        ARCHITECTURE:
-          - istoreos
-        os:
-          - ubuntu-22.04
-
-      fail-fast: false
+    runs-on: ubuntu-22.04
 
     steps:
     - name: 准备完成
-      uses: actions/checkout@main
+      uses: actions/checkout@v3
 
     - name: 检查服务器配置
       run: |
@@ -102,7 +90,7 @@ jobs:
       working-directory: /workdir
       run: |
         df -hT $PWD
-        git clone $REPO_URL -b ${{ matrix.REPO_BRANCH }} openwrt
+        git clone $REPO_URL -b $REPO_BRANCH --single-branch --depth=1 openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
 
