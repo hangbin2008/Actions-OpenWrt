@@ -32,8 +32,8 @@ jobs:
         REPO_BRANCH:
           - istoreos-22.03
         ARCHITECTURE:
-          - RK33
-          - RK35
+         # - RK33
+         # - RK35
           - X86
         os:
           - ubuntu-22.04
