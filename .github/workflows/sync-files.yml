@@ -3,8 +3,8 @@ name: Sync Files
 on:
   repository_dispatch:
   workflow_dispatch:
-#  schedule:
-#    - cron: 50 19 * * *
+  schedule:
+    - cron: 50 19 * * *
 
 jobs:
   sync:
