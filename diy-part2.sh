@@ -24,7 +24,7 @@ fi
 # sed -i 's/OpenWrt/iStore OS/g' package/base-files/files/bin/config_generate
 
 # 清除默认登录密码
-sed -i 's/$1$5mjCdAB1$Uk1sNbwoqfHxUmzRIeuZK1:0/:/g' package/base-files/files/etc/shadow
+# sed -i 's/$1$5mjCdAB1$Uk1sNbwoqfHxUmzRIeuZK1:0/:/g' package/base-files/files/etc/shadow
 
 # ttyd 自动登录
 sed -i "s?/bin/login?/usr/libexec/login.sh?g" package/feeds/packages/ttyd/files/ttyd.config
